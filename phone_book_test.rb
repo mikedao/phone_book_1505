@@ -37,7 +37,7 @@ class PhonebookTest < MiniTest::Test
 
     person = Person.new(row)
 
-    assert_equal 25, person.age
+    assert_equal "25 years", person.age
   end
 
   def test_person_sanitizes_phone_number
@@ -75,7 +75,7 @@ class PhonebookTest < MiniTest::Test
     pb.load
     result = pb.contacts.first.age
 
-    assert_equal 25, result
+    assert_equal "25 years" , result
   end
 
   def test_it_has_other_people
@@ -84,7 +84,8 @@ class PhonebookTest < MiniTest::Test
     pb.load
     person = pb.contacts[1]
 
-    assert_equal 35, person.age
+    assert_equal 2, person.id
+    assert_equal "35 years", person.age
     assert_equal "Jeff", person.first_name
     assert_equal "Wan", person.last_name
     assert_equal "(212) 222-2222", person.phone_number

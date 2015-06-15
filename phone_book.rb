@@ -26,13 +26,17 @@ class Person
     @first_name   = row[:first_name].capitalize
     @last_name    = row[:last_name].capitalize
     @phone_number = sanitize_phone_number(row[:phone_number])
-    @age          = row[:age].to_i
+    @age          = format_age(row[:age])
   end
 
   private
 
   def sanitize_phone_number(phone_number)
     "(" + phone_number[0..2] + ")" + " " + phone_number[3..5] + "-" + phone_number[6..9]
+  end
+
+  def format_age(age)
+    "#{age} years"
   end
 
 end
