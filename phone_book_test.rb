@@ -40,6 +40,18 @@ class PhonebookTest < MiniTest::Test
     assert_equal 25, person.age
   end
 
+  def test_person_sanitizes_phone_number
+    row = {id: "1",
+            first_name: "taylor",
+            last_name: "swift",
+            phone_number: "6175555555",
+            age: "25"}
+
+    person = Person.new(row)
+
+    assert_equal "(617) 555-5555", person.phone_number
+  end
+
   def test_it_can_load_all_people
     pb = PhoneBook.new
 
@@ -75,7 +87,7 @@ class PhonebookTest < MiniTest::Test
     assert_equal 35, person.age
     assert_equal "Jeff", person.first_name
     assert_equal "Wan", person.last_name
-    assert_equal "2122222222", person.phone_number
+    assert_equal "(212) 222-2222", person.phone_number
   end
 
   def test_contacts_is_full_of_people
